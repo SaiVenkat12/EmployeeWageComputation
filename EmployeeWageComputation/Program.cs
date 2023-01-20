@@ -19,20 +19,21 @@ namespace EmployeeWageComputation
             //UC1- Employee Attendance
             Random random = new Random();
             int empAttendance = random.Next(0, 3);
-            //UC3-Add Part Time Employee
-            if (empAttendance == isFullTime)
+            //UC3- Add Part Time Employee
+            //UC4- Switch Case
+            switch(empAttendance)
             {
-                Console.WriteLine("Employee is FullTime");
-                empHrs = 8;
-            }
-            else if(empAttendance== isPartTime)
-            {
-                Console.WriteLine("Employee is PartTime");
-                empHrs = 4;
-            }           
-            else
-            {
-                Console.WriteLine("Employee is Absent");
+                case isFullTime:
+                    Console.WriteLine("Employee is FullTime");
+                    empHrs = 8;
+                    break;
+                case isPartTime:
+                    Console.WriteLine("Employee is PartTime");
+                    empHrs = 4;
+                    break;
+                    default:
+                    Console.WriteLine("Employee is Absent");
+                    break;
             }
             //UC2- Employee Daily Wage
             empDailyWage = empWagePerHr * empHrs;
