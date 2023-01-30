@@ -8,25 +8,30 @@ namespace EmployeeWageComputation
 {
     public class Program
     {
+        const int isFullTime = 1;
+        const int isPartTime = 2;
+        const int empWagePerHr = 20;
+        const int empWorkinDaysPerMonth = 20;
+        const int empTotalWorkingHrs = 100;
         public static void Main(string[] args)
         {
-            const int isFullTime = 1;
-            const int isPartTime = 2;
-            const int empWagePerHr = 20;
-            const int empWorkinDaysPerMonth = 20;
-            const int empTotalWorkingHrs = 100;
+            Console.WriteLine("Welcome to Employee Wage Computation Problem");
+            //UC7-Use Class Method and Variables
+            Program.EmpWage();
+            Console.ReadLine();
+        }
+        public static void EmpWage()
+        {
             int empHrs = 0;
             int totalEmpHrs = 0;
             int empDailyWage = 0;
             int empMontlyWage = 0;
             int totalWorkingDays = 0;
 
-
-            Console.WriteLine("Welcome to Employee Wage Computation Problem");
             //UC1- Employee Attendance
             Random random = new Random();
-            //UC7-MaxHrs
-            while ( totalWorkingDays<empWorkinDaysPerMonth && totalEmpHrs<empTotalWorkingHrs)
+            //UC6-MaxHrs
+            while (totalWorkingDays < empWorkinDaysPerMonth && totalEmpHrs < empTotalWorkingHrs)
             {
                 int empAttendance = random.Next(0, 3);
                 //UC3- Add Part Time Employee
@@ -51,7 +56,6 @@ namespace EmployeeWageComputation
             empMontlyWage = empWagePerHr * totalEmpHrs;
             Console.WriteLine("Total Number of Hours is  " + totalEmpHrs + " Total Number of days is " + totalWorkingDays);
             Console.WriteLine("Montly Wage of Emplyoee is " + empMontlyWage);
-            Console.ReadLine();
         }
     }
 }
