@@ -10,21 +10,21 @@ namespace EmployeeWageComputation
     {
         const int isFullTime = 1;
         const int isPartTime = 2;
-        const int empWagePerHr = 20;
-        const int empWorkinDaysPerMonth = 20;
-        const int empTotalWorkingHrs = 100;
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Problem");
             //UC7-Use Class Method and Variables
-            Program.EmpWage();
+            Program obj=new Program();
+            obj.EmpWage("Tata", 30, 16, 60);
+            obj.EmpWage("Google", 20, 15, 80);
+            obj.EmpWage("Apple", 15, 18, 100);
             Console.ReadLine();
         }
-        public static void EmpWage()
+        //UC8-Multiple companies
+        public void EmpWage(string company, int empWagePerHr, int empWorkinDaysPerMonth, int empTotalWorkingHrs)
         {
             int empHrs = 0;
             int totalEmpHrs = 0;
-            int empDailyWage = 0;
             int empMontlyWage = 0;
             int totalWorkingDays = 0;
 
@@ -54,8 +54,8 @@ namespace EmployeeWageComputation
             //UC2- Employee Daily Wage
             //UC5- Employee Monthly Wage
             empMontlyWage = empWagePerHr * totalEmpHrs;
-            Console.WriteLine("Total Number of Hours is  " + totalEmpHrs + " Total Number of days is " + totalWorkingDays);
-            Console.WriteLine("Montly Wage of Emplyoee is " + empMontlyWage);
+            Console.WriteLine("Company : " + company);
+            Console.WriteLine("Total Number of Hours is  " + totalEmpHrs + ", Total Number of days is " + totalWorkingDays+", Montly Wage of Emplyoee is " + empMontlyWage);
         }
     }
 }
