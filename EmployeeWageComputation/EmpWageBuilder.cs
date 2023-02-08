@@ -57,9 +57,12 @@ namespace EmployeeWageComputation
             //UC2- Employee Daily Wage
             //UC5- Employee Monthly Wage
             empMontlyWage = empWagePerHr * totalEmpHrs;
-            Console.WriteLine("Company : " + company);
             Console.WriteLine("Total Number of Hours is  " + totalEmpHrs + ", Total Number of days is " + totalWorkingDays + ", Montly Wage of Emplyoee is " + empMontlyWage);
         }
-
+        //UC10-ManageWageForMultipleCompanies
+        public string ToString()
+        {
+            return "Company :" + this.company + " TotalWage =" + this.empMontlyWage;
+        }
     }
 }
