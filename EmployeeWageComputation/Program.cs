@@ -17,12 +17,10 @@ namespace EmployeeWageComputation
             EmpWageBuilder Google = new EmpWageBuilder("Google", 20, 15, 80);
             EmpWageBuilder Apple = new EmpWageBuilder("Apple", 15, 18, 100);
 
-            Tata.EmpWage();
-            Console.WriteLine(Tata.ToString());
+            Tata.EmpWage();            
             Google.EmpWage();
-            Console.WriteLine(Google.ToString());
             Apple.EmpWage();
-            Console.WriteLine(Apple.ToString());
+            
             Console.ReadLine();
         }
         //UC8-Multiple companies

@@ -17,6 +17,7 @@ namespace EmployeeWageComputation
         private int empTotalWorkingHrs;
         private int empMontlyWage;
 
+        //UC9-Total Wage for each Company
         public EmpWageBuilder(string company, int empWagePerHr, int empWorkinDaysPerMonth, int empTotalWorkingHrs)
         {
             this.company = company;
@@ -56,12 +57,9 @@ namespace EmployeeWageComputation
             //UC2- Employee Daily Wage
             //UC5- Employee Monthly Wage
             empMontlyWage = empWagePerHr * totalEmpHrs;
+            Console.WriteLine("Company : " + company);
             Console.WriteLine("Total Number of Hours is  " + totalEmpHrs + ", Total Number of days is " + totalWorkingDays + ", Montly Wage of Emplyoee is " + empMontlyWage);
         }
-        //UC9-Total Wage for each Company
-        public string ToString()
-        {
-            return "Company :" + this.company + " TotalWage =" + this.empMontlyWage;
-        }
+
     }
 }
