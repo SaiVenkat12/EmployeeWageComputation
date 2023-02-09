@@ -6,7 +6,7 @@
 
     namespace EmployeeWageComputation
     {
-        internal class EmpWageBuilder
+        internal class EmpWageBuilder : IEmpWage
         {
             const int isFullTime = 1;
             const int isPartTime = 2;
@@ -18,13 +18,13 @@
             {
                 companies = new CompanyEmpWage[3];
             }
-            public void AddCompanyEmpWage(string company, int empWagePerHr, int empWorkinDaysPerMonth, int empTotalWorkingHrs)
+             void IEmpWage.AddCompanyEmpWage(string company, int empWagePerHr, int empWorkinDaysPerMonth, int empTotalWorkingHrs)
             {
                 CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empWagePerHr, empWorkinDaysPerMonth, empTotalWorkingHrs);
                 companies[numOfCompanies] = companyEmpWage;
                 numOfCompanies++;
             }
-            public void IterateOverCompanies()
+             void IEmpWage.IterateOverCompanies()
             {
                 for (int i = 0; i < companies.Length; i++)
                 {
