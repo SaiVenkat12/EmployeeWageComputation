@@ -1,68 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace EmployeeWageComputation
-{
-    internal class EmpWageBuilder
+    namespace EmployeeWageComputation
     {
-        const int isFullTime = 1;
-        const int isPartTime = 2;
-
-        private string company;
-        private int empWagePerHr;
-        private int empWorkinDaysPerMonth;
-        private int empTotalWorkingHrs;
-        private int empMontlyWage;
-
-        //UC9-Total Wage for each Company
-        public EmpWageBuilder(string company, int empWagePerHr, int empWorkinDaysPerMonth, int empTotalWorkingHrs)
+        internal class EmpWageBuilder
         {
-            this.company = company;
-            this.empWagePerHr = empWagePerHr;
-            this.empWorkinDaysPerMonth = empWorkinDaysPerMonth;
-            this.empTotalWorkingHrs = empTotalWorkingHrs;
-        }
-        public void EmpWage()
-        {
-            int empHrs = 0;
-            int totalEmpHrs = 0;
-            int totalWorkingDays = 0;
-
-            //UC1- Employee Attendance
-            Random random = new Random();
-            //UC6-MaxHrs
-            while (totalWorkingDays < empWorkinDaysPerMonth && totalEmpHrs < empTotalWorkingHrs)
+            const int isFullTime = 1;
+            const int isPartTime = 2;
+            public int numOfCompanies = 0;
+            public CompanyEmpWage[] companies;
+            //UC10-EmpWageArray-ManageWageForMultipleCompanies
+            //UC9-Total Wage for each Company
+            public EmpWageBuilder()
             {
-                int empAttendance = random.Next(0, 3);
-                //UC3- Add Part Time Employee
-                //UC4- Switch Case
-                switch (empAttendance)
-                {
-                    case isFullTime:
-                        empHrs = 8;
-                        break;
-                    case isPartTime:
-                        empHrs = 4;
-                        break;
-                    default:
-                        empHrs = 0;
-                        break;
-                }
-                totalWorkingDays++;
-                totalEmpHrs += empHrs;
+                companies = new CompanyEmpWage[3];
             }
+            public void AddCompanyEmpWage(string company, int empWagePerHr, int empWorkinDaysPerMonth, int empTotalWorkingHrs)
+            {
+                CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empWagePerHr, empWorkinDaysPerMonth, empTotalWorkingHrs);
+                companies[numOfCompanies] = companyEmpWage;
+                numOfCompanies++;
+            }
+            public void IterateOverCompanies()
+            {
+                for (int i = 0; i < companies.Length; i++)
+                {
+                    companies[i].SetTotalEmpWage(EmpWage(companies[i]));
+                    Console.WriteLine(this.companies[i].ToString());
+                }
+            }
+            public int EmpWage(CompanyEmpWage companyEmpWage)
+            {
+                int empHrs = 0;
+                int totalEmpHrs = 0;
+                int totalWorkingDays = 0;
+
+                //UC1- Employee Attendance
+                Random random = new Random();
+                //UC6-MaxHrs
+                while (totalWorkingDays < companyEmpWage.empWorkinDaysPerMonth && totalEmpHrs < companyEmpWage.empTotalWorkingHrs)
+                {
+                    int empAttendance = random.Next(0, 3);
+                    //UC3- Add Part Time Employee
+                    //UC4- Switch Case
+                    switch (empAttendance)
+                    {
+                        case isFullTime:
+                            empHrs = 8;
+                            break;
+                        case isPartTime:
+                            empHrs = 4;
+                            break;
+                        default:
+                            empHrs = 0;
+                            break;
+                    }
+                    totalWorkingDays++;
+                    totalEmpHrs += empHrs;
+                }
             //UC2- Employee Daily Wage
             //UC5- Employee Monthly Wage
-            empMontlyWage = empWagePerHr * totalEmpHrs;
-            Console.WriteLine("Total Number of Hours is  " + totalEmpHrs + ", Total Number of days is " + totalWorkingDays + ", Montly Wage of Emplyoee is " + empMontlyWage);
-        }
-        //UC10-ManageWageForMultipleCompanies
-        public string ToString()
-        {
-            return "Company :" + this.company + " TotalWage =" + this.empMontlyWage;
-        }
+            companyEmpWage.empMontlyWage = companyEmpWage.empWagePerHr * totalEmpHrs;
+            return companyEmpWage.empMontlyWage;
+            }
+        }    
+    
     }
-}
